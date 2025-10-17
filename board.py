@@ -1,12 +1,12 @@
 import random
 from tabulate import tabulate 
-
+#A function to check whether the number is in the row
 def Row(x, row, grid):
     if x in grid[row]:
         return True
     else:
         return False
-
+#A function to check whether the number is in the column
 def Col(x, col, grid):
     colList = []
     for i in range(9):
@@ -15,10 +15,10 @@ def Col(x, col, grid):
         return True
     else:
         return False
-
+#above function checks whether number is in a 3*3 sqaure
 def Square(x, row, col, grid):
     square = []
-
+#This function will check which 3*3 square the number is located in the 9*9 grid
     if row < 3:
         if col < 3:
             square = [grid[i][0:3] for i in range(0, 3)]
@@ -26,6 +26,7 @@ def Square(x, row, col, grid):
             square = [grid[i][3:6] for i in range(0, 3)]
         else:
             square = [grid[i][6:9] for i in range(0, 3)]
+#checks for the number in the first 3 rows and upto all 9 columns
     elif row < 6:
         if col < 3:
             square = [grid[i][0:3] for i in range(3, 6)]
@@ -33,6 +34,7 @@ def Square(x, row, col, grid):
             square = [grid[i][3:6] for i in range(3, 6)]
         else:
             square = [grid[i][6:9] for i in range(3, 6)]
+#checks from 3rd to 6th row and upto all 9 columns
     else:
         if col < 3:
             square = [grid[i][0:3] for i in range(6, 9)]
@@ -40,9 +42,10 @@ def Square(x, row, col, grid):
             square = [grid[i][3:6] for i in range(6, 9)]
         else:
             square = [grid[i][6:9] for i in range(6, 9)]
+#finally it checks the last 3 rows and all acoloumns once again
 
     return bool(x in square[0]+square[1]+square[2])
-
+#to check whether the 9*9 grid is filled
 def isGridFilled(grid):
     for r in range(9):
         for c in range(9):
@@ -50,7 +53,7 @@ def isGridFilled(grid):
                 return False
     else:
         return True
-
+#function to actually make the full sudoku table
 
 def fillGrid(grid, tracker):
 
@@ -65,7 +68,7 @@ def fillGrid(grid, tracker):
 
                 for testVal in values:
                     # 1. in the row
-                    # 2. in the col
+                    # 2. in the column
                     # 3. in the square
 
                     a = Row(testVal, row, grid)
